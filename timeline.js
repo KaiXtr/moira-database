@@ -54,7 +54,7 @@ for (i=0;i<slct.length;i++) {
 }
 
 //DRAW TIMELINE RECTS
-document.write("<br/><canvas id='cnv' width='600' height='200'></canvas>")
+/*document.write("<br/><canvas id='cnv' width='600' height='200'></canvas>")
 el = document.getElementById('cnv');
 cnv = el.getContext('2d');
 
@@ -81,7 +81,25 @@ for (x=0;x<40;x++) {
 
 //cnv.moveTo(0,0);
 //cnv.lineTo(300,200);
-cnv.stroke();
+cnv.stroke();*/
+
+var inf = "";
+function loadInfo () {
+	inf = "index"
+	el = document.getElementsByClassName("factcontent")[0];
+	el.src = "." + dir.replace('.','/') + "/" + inf + ".htm";
+}
+
+//GET TIMELINE DIRECTORIES
+document.write("<div id=\"timeline\">")
+for (i=0;i<5;i++) {
+	document.write("<div class=\"timeline-button\" style=\"background-image: url('media/images/thumbs/" + img + ".jpg')\" \
+		onclick=\"loadInfo()\"></div>");
+}
+document.write("</div>")
 
 //GET TIME INFO
-if (dir != "") {document.write("<br/><iframe class=\"factcontent\" src=\"." + dir.replace('.','/') + "/index.htm\"></iframe>");}
+console.log(inf);
+if (dir != "" && inf != "") {
+	document.write("<br/><iframe class=\"factcontent\"></iframe>");
+}

@@ -89,6 +89,24 @@ div#content {
 	padding: 50px;
 }
 
+div#timeline {
+	width: 100%;
+}
+
+div#timeline .timeline-button {
+	background: #FFFFFF;
+	margin: 5px;
+	width: 5%;
+	height: 10%;
+	display: inline-block;
+	transform: scale(1.0);
+	transition: transform 1s;
+}
+
+div#timeline .timeline-button:hover {
+	transform: scale(1.2);
+}
+
 iframe.factcontent {
 	background-color: #DFFFE2;
 	border: None;
