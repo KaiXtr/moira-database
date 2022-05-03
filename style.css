@@ -3,7 +3,7 @@ html {
 }
 
 body {
-	font-family: sans-serif;
+	font-family: monospace;
 	margin: 0px;
 }
 
@@ -43,21 +43,66 @@ div#navigation-bar {
 
 div#navigation-bar ul {
 	margin: 0px;
-	padding-top: 20px;
+	padding-top: 0px;
+	height: 50px;
 }
 
 div#navigation-bar li {
-	margin: 3%;
-	height: 50px;
-	display: inline;
+	text-align: center;
+	margin: 0px;
+	padding-top: 20px;
+	width: 10%;
+	height: 30px;
+	display: inline-block;
 }
 
 div#navigation-bar li:hover {
 	background-color: #336699;
 }
 
+div#navigation-bar .bar-select {
+	position: relative;
+}
+
+div#navigation-bar .bar-select .bar-select-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	top: 50px;
+	left: -40px;
+}
+
+div#navigation-bar .bar-select .bar-select-content li {
+	background-color: #A7CAAB;
+	width: 100%;
+}
+
+div#navigation-bar .bar-select:hover .bar-select-content {
+	display: block;
+}
+
+div#navigation-bar .bar-select .bar-select-content li:hover  {
+	background-color: #336699;
+}
+
 div#content {
 	padding: 50px;
+}
+
+iframe.factcontent {
+	background-color: #DFFFE2;
+	border: None;
+	border-radius: 40px;
+	padding: 20px;
+	width: 80%;
+}
+
+section#about {
+	font-size: 24px;
+}
+
+section#about h1 {
+	font-size: 48px;
 }
 
 footer {

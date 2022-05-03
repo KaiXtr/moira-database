@@ -16,100 +16,43 @@
 		</div>
 		<div id="navigation-bar">
 			<ul>
-				<li><a href="index.htm">HOME</a></li>
-				<li><a href="?path=hadean">HADEANO</a></li>
-				<li><a href="?path=archean">ARQUEANO</a></li>
-				<li><a href="?path=proterozoic">PROTEROZOICO</a></li>
-				<li><a href="?path=phanerozoic.paleozoic.cambrian">CAMBRIANA</a></li>
-				<li><a href="?path=phanerozoic.cenozoic.quaternary.holocene.upper.meghalayan">MEGALAYANA</a></li>
+				<a href="index.htm"><li>HOME</li></a>
+				<li class="bar-select">
+					EONS
+					<ul class="bar-select-content">
+						<a href="?path=hadean"><li>HADEANO</li></a>
+						<a href="?path=archean"><li>ARQUEANO</li></a>
+						<a href="?path=proterozoic"><li>PROTEROZOICO</li></a>
+						<a href="?path=phanerozoic.paleozoic.cambrian"><li>CAMBRIANA</li></a>
+						<a href="?path=phanerozoic.cenozoic.quaternary.holocene.upper.meghalayan"><li>MEGALAYANA</li></a>
+					</ul>
+				</li>
+				<li class="bar-select">
+					CALENDÁRIOS
+					<ul class="bar-select-content">
+						<a href="?calendar=gregorian"><li>GREGORIANO</li></a>
+					</ul>
+				</li>
+				<a href="#about"><li>SOBRE</li></a>
 			</ul>
 		</div>
 		<div id="content">
-			<script>
-				//KEEP PAGE SCROLL
-				document.addEventListener("DOMContentLoaded", function(event) { 
-					var scrl = localStorage.getItem('scrl');
-					document.html.style.scrollBehavior = "initial";
-					if (scrl) window.scrollTo(0, scrl);
-					document.html.style.scrollBehavior = "smooth";
-				});
-
-				window.onbeforeunload = function(e) {
-					localStorage.setItem('scrl', window.scrollY);
-				};
-
-				//LOAD BANNER IMAGE BY URL QUERY
-				const qry = new URLSearchParams(window.location.search)
-				if (qry.get('path') != null) {dir = "." + qry.get('path');} else {dir = '';}
-				if (dir == '') {img = 'banner';}
-				else {
-					img = dir.substr(dir.lastIndexOf('.') + 1,dir.lenght);
-					document.write(dir.substr(0,dir.lastIndexOf('.')) + ".<b>" + img + "</b>");
-				}
-
-				banner = document.getElementById('banner');
-				banner.style = "background-image: url('media/images/banners/" + img + ".jpg');";
-
-				/*var getFolders = function(dir) {
-
-					var filesystem = require("fs");
-					var results = [];
-
-					filesystem.readdirSync(dir).forEach(function(file) {
-
-						file = dir+'/'+file;
-						var stat = filesystem.statSync(file);
-
-						if (stat && stat.isDirectory()) {
-							results = results.concat(_getAllFilesFromFolder(file))
-						} else results.push(file);
-
-					});
-
-					return results;
-				};*/
-				function getFolders(dir) {
-					return window.location.href;
-				}
-			</script>
-			<br/>
-			<canvas id='cnv' width='600' height='200'>
-			</canvas>
-			<script>
-				//DRAW TIMELINE RECTS
-				el = document.getElementById('cnv');
-				cnv = el.getContext('2d');
-
-				function clickButton(event,rect) {
-					if (cnv.isPointInPath(rect,event.clientX,event.clientY)) {alert('click!');}
-				}
-				function hoverButton(event,rect) {
-					if (cnv.isPointInPath(rct,event.clientX,event.clientY)) {
-						cnv.fillStyle = '#FFFFFF';
-					}
-					else {cnv.fillStyle = '#000000';}
-					cnv.clearRect(0, 0, cnv.width, cnv.height);
-					cnv.fill(rect);
-				}
-
-				cnv.fillStyle = '#000000';
-				//document.write(getFolders(dir));
-				for (x=0;x<40;x++) {
-					rct = new Path2D()
-					rct.rect(0 + (x *41),20,40,40);
-					cnv.fill(rct)
-					el.addEventListener('click', clickButton(rct),false);
-					el.addEventListener('mousemove', hoverButton(rct),false);
-				}
-
-				//cnv.moveTo(0,0);
-				//cnv.lineTo(300,200);
-				cnv.stroke();
-			</script>
-			<noscript>Infelizmente, seu navegador não possui suporte para Javascript...</noscript>
-			<br/>
-			<iframe src="C:\Users\19762201736\Documents\Möira database\phanerozoic\cenozoic\quaternary\holocene\upper\meghalayan\modern-history\late-modern\2000\index.htm">
-			</iframe>
+			<section id="timeline">
+				<script src="timeline.js" type="text/javascript">
+				</script>
+				<noscript>Infelizmente, seu navegador não possui suporte para Javascript...</noscript>
+			</section>
+			<section id="about">
+				<h1>O que é o Möira?</h1>
+				É uma ferramenta para visualizar e aprender sobre a história do universo em diferentes épocas e eras utilizando o calendário gregoriano.
+				<blockquote>
+					300 a.c - 200 a.c - 100 a.c - 0 - 100 d.c - 200 d.c - 300 d.c
+				</blockquote>
+				Lembrando que o calendário gregoriano se inicia a partir do nascimento de Cristo.
+				Anos antes de cristo (a.c) diminuem com o tempo e anos depois de cristo (d.c) avançam com o tempo. Além dessas medidas,há também o circa (ca), que vem do latim e significa “Aproximadamente”, e serve para denotar eventos históricos sem uma data precisa.
+				<h1>Como usar o Möira?</h1>
+				Basta selecionar uma foto representativa dentro da linha do tempo e clicá-la para exibir informações históricas.
+			</section>
 		</div>
 		<footer>
 			Matt Kai - 2022
