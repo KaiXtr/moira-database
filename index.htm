@@ -1,0 +1,118 @@
+<html>
+	<head>
+		<title>Möira</title>
+		<meta charset='UTF-8'/>
+		<meta name="author" content="Matt Kai"/>
+		<meta name="description" content="Visualizador da linha do tempo do universo."/>
+		<meta name="keywords" content="Moira, time, timeline, universe, wiki"/>
+		<link rel='stylesheet' href='style.css' />
+	</head>
+	<body>
+		<div id="banner">
+			<div>
+				<h1>Möira</h1>
+				Linha do tempo visualizada.
+			</div>
+		</div>
+		<div id="navigation-bar">
+			<ul>
+				<li><a href="index.htm">HOME</a></li>
+				<li><a href="?path=hadean">HADEANO</a></li>
+				<li><a href="?path=archean">ARQUEANO</a></li>
+				<li><a href="?path=proterozoic">PROTEROZOICO</a></li>
+				<li><a href="?path=phanerozoic.paleozoic.cambrian">CAMBRIANA</a></li>
+				<li><a href="?path=phanerozoic.cenozoic.quaternary.holocene.upper.meghalayan">MEGALAYANA</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<script>
+				//KEEP PAGE SCROLL
+				document.addEventListener("DOMContentLoaded", function(event) { 
+					var scrl = localStorage.getItem('scrl');
+					document.html.style.scrollBehavior = "initial";
+					if (scrl) window.scrollTo(0, scrl);
+					document.html.style.scrollBehavior = "smooth";
+				});
+
+				window.onbeforeunload = function(e) {
+					localStorage.setItem('scrl', window.scrollY);
+				};
+
+				//LOAD BANNER IMAGE BY URL QUERY
+				const qry = new URLSearchParams(window.location.search)
+				if (qry.get('path') != null) {dir = "." + qry.get('path');} else {dir = '';}
+				if (dir == '') {img = 'banner';}
+				else {
+					img = dir.substr(dir.lastIndexOf('.') + 1,dir.lenght);
+					document.write(dir.substr(0,dir.lastIndexOf('.')) + ".<b>" + img + "</b>");
+				}
+
+				banner = document.getElementById('banner');
+				banner.style = "background-image: url('media/images/banners/" + img + ".jpg');";
+
+				/*var getFolders = function(dir) {
+
+					var filesystem = require("fs");
+					var results = [];
+
+					filesystem.readdirSync(dir).forEach(function(file) {
+
+						file = dir+'/'+file;
+						var stat = filesystem.statSync(file);
+
+						if (stat && stat.isDirectory()) {
+							results = results.concat(_getAllFilesFromFolder(file))
+						} else results.push(file);
+
+					});
+
+					return results;
+				};*/
+				function getFolders(dir) {
+					return window.location.href;
+				}
+			</script>
+			<br/>
+			<canvas id='cnv' width='600' height='200'>
+			</canvas>
+			<script>
+				//DRAW TIMELINE RECTS
+				el = document.getElementById('cnv');
+				cnv = el.getContext('2d');
+
+				function clickButton(event,rect) {
+					if (cnv.isPointInPath(rect,event.clientX,event.clientY)) {alert('click!');}
+				}
+				function hoverButton(event,rect) {
+					if (cnv.isPointInPath(rct,event.clientX,event.clientY)) {
+						cnv.fillStyle = '#FFFFFF';
+					}
+					else {cnv.fillStyle = '#000000';}
+					cnv.clearRect(0, 0, cnv.width, cnv.height);
+					cnv.fill(rect);
+				}
+
+				cnv.fillStyle = '#000000';
+				//document.write(getFolders(dir));
+				for (x=0;x<40;x++) {
+					rct = new Path2D()
+					rct.rect(0 + (x *41),20,40,40);
+					cnv.fill(rct)
+					el.addEventListener('click', clickButton(rct),false);
+					el.addEventListener('mousemove', hoverButton(rct),false);
+				}
+
+				//cnv.moveTo(0,0);
+				//cnv.lineTo(300,200);
+				cnv.stroke();
+			</script>
+			<noscript>Infelizmente, seu navegador não possui suporte para Javascript...</noscript>
+			<br/>
+			<iframe src="C:\Users\19762201736\Documents\Möira database\phanerozoic\cenozoic\quaternary\holocene\upper\meghalayan\modern-history\late-modern\2000\index.htm">
+			</iframe>
+		</div>
+		<footer>
+			Matt Kai - 2022
+		</footer>
+	</body>
+</html>

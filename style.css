@@ -1,3 +1,74 @@
+html {
+	scroll-behavior: smooth;
+}
+
 body {
 	font-family: sans-serif;
+	margin: 0px;
 }
+
+div#banner {
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: 100%;
+	animation-name: banner;
+	animation-duration: 1s;
+	height: 500px;
+}
+
+div#banner div {
+	position: relative;
+	color: #FFFFFF;
+	font-size: 32px;
+	left: 10px;
+}
+
+div#banner div h1 {
+	font-size: 128px;
+	margin-bottom: 10px;
+}
+
+@keyframes banner {
+	from {opacity: 0.0;}
+	to {opacity: 1.0;}
+}
+
+div#navigation-bar {
+	background-color: #C9FFE5;
+	text-align: center;
+	width: 100%;
+	height: 50px;
+}
+
+div#navigation-bar ul {
+	margin: 0px;
+	padding-top: 20px;
+}
+
+div#navigation-bar li {
+	margin: 3%;
+	height: 50px;
+	display: inline;
+}
+
+div#navigation-bar li:hover {
+	background-color: #336699;
+}
+
+div#content {
+	padding: 50px;
+}
+
+footer {
+	background-color: #A7CAAB;
+	text-align: center;
+	padding-top: 20px;
+	width: 100%;
+	height: 50px;
+}
+
+a:link {color: #003366; text-decoration: none;}
+a:visited {color: #003366; text-decoration: none;}
+a:hover {text-decoration: none;}
+a:active {color: #0099cc; text-decoration: none;}
