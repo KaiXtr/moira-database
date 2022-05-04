@@ -100,7 +100,7 @@ div#timeline .timeline-button {
 	height: 10%;
 	display: inline-block;
 	transform: scale(1.0);
-	transition: transform 1s;
+	transition: transform .2s;
 }
 
 div#timeline .timeline-button:hover {

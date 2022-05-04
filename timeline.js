@@ -83,23 +83,20 @@ for (x=0;x<40;x++) {
 //cnv.lineTo(300,200);
 cnv.stroke();*/
 
+//GET TIMELINE DIRECTORIES
 var inf = "";
-function loadInfo () {
-	inf = "index"
+function loadInfo(i) {
 	el = document.getElementsByClassName("factcontent")[0];
-	el.src = "." + dir.replace('.','/') + "/" + inf + ".htm";
+	el.src = "." + dir.replace('.','/') + "/info" + i + ".htm";
+	el.style.display = "block";
 }
 
-//GET TIMELINE DIRECTORIES
 document.write("<div id=\"timeline\">")
 for (i=0;i<5;i++) {
 	document.write("<div class=\"timeline-button\" style=\"background-image: url('media/images/thumbs/" + img + ".jpg')\" \
-		onclick=\"loadInfo()\"></div>");
+		onclick=\"loadInfo('" + (i + 1) + "')\">" + (i + 1) + "a.c</div>");
 }
 document.write("</div>")
 
 //GET TIME INFO
-console.log(inf);
-if (dir != "" && inf != "") {
-	document.write("<br/><iframe class=\"factcontent\"></iframe>");
-}
+document.write("<br/><iframe class=\"factcontent\" style=\"display: none\"></iframe>");
